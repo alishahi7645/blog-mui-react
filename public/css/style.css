@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'vazir';
+    src: local('vazir'), url(../fonts/vazir.ttf) format('truetype');
+}
+
+*{
+    font-family: 'vazir' !important;
+}
+
+body{
+    direction: rtl;
+    text-align: right;
+    font-family: 'vazir';
+}
