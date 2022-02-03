@@ -5,6 +5,7 @@ import useStyle from './styles/style';
 import Rightbar from './components/rightbar/Rightbar';
 import Feed from './components/feed/Feed';
 import Leftbar from './components/leftbar/Leftbar';
+import Add from "./components/Add/Add";
 
 function App() {
   const classes = useStyle();
@@ -14,16 +15,18 @@ function App() {
       <Navbar />
 
       <Grid container>
-        <Grid item sm={3}  className={classes.right}>
+        <Grid item sm={2} xs={2} className={classes.right}>
           <Rightbar />
         </Grid>
         <Grid item sm={7} xs={10}>
           <Feed />
         </Grid>
-        <Grid item sm={2} xs={2} className={classes.left}>
+        <Grid item sm={3}  className={classes.left}>
           <Leftbar />
         </Grid>
       </Grid>
+
+      <Add/>
     </div>
   );
 }
