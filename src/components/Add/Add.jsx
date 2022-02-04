@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Tooltip, Fab, Modal, Container, TextField, MenuItem,RadioGroup ,FormControlLabel,Radio,FormLabel,Button} from '@material-ui/core'
-
+import { Tooltip, Fab, Modal, Container, TextField, MenuItem, RadioGroup, FormControlLabel, Radio, FormLabel, Button, Snackbar } from '@material-ui/core'
+import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core'
 import { AddCircle } from '@material-ui/icons';
 
@@ -21,15 +21,31 @@ const useStyle = makeStyles((theme) => ({
         left: 0,
         margin: 'auto'
     },
-    item:{
-        marginBottom:theme.spacing(2)
+    item: {
+        marginBottom: theme.spacing(2)
     }
 }))
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 
 function Add() {
     const classes = useStyle();
     const [open, setopen] = useState(false);
+    const [openAlert, setAlert] = useState(false);
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setAlert(false);
+    };
+    const handleClick = () => {
+        setAlert(true);
+    };
     return (
         <>
             <Tooltip title='AddPost' aria-label='add' onClick={() => setopen(true)}>
@@ -64,19 +80,24 @@ function Add() {
                         <div>
                             <FormLabel component="legend">دسترسی کامنت گذاری؟</FormLabel>
                             <RadioGroup >
-                                <FormControlLabel value="همه کاربران" control={<Radio size='small'/>} label="همه کاربران" />
-                                <FormControlLabel value="دوستان" control={<Radio size='small'/>} label="دوستان" />
-                                <FormControlLabel value="هیچکس" control={<Radio size='small'/>} label="هیچکس" />
+                                <FormControlLabel value="همه کاربران" control={<Radio size='small' />} label="همه کاربران" />
+                                <FormControlLabel value="دوستان" control={<Radio size='small' />} label="دوستان" />
+                                <FormControlLabel value="هیچکس" control={<Radio size='small' />} label="هیچکس" />
 
                             </RadioGroup>
                         </div>
                         <div className={classes.item}>
-                            <Button variant='outlined' color='primary' style={{marginLeft:'10px'}}>ارسال</Button>
-                            <Button variant='outlined' color='secondary' onClick={()=> setopen(false)}>انصراف</Button>
+                            <Button variant='outlined' color='primary' style={{ marginLeft: '10px' }} onClick={handleClick}>ارسال</Button>
+                            <Button variant='outlined' color='secondary' onClick={() => setopen(false)}>انصراف</Button>
                         </div>
                     </form>
                 </Container>
             </Modal>
+            <Snackbar open={openAlert} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
+                <Alert onClose={handleClose} severity="success">
+                    پست باموفقیت ارسال شد
+                </Alert>
+            </Snackbar>
         </>
     )
 }

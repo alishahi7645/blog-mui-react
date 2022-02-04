@@ -15,7 +15,7 @@ function Feed() {
     return (
         <Container className={classes.Container}>
             <Post/>
-            
+            <Post/>
         </Container>
     )
 }

@@ -29,7 +29,7 @@ const Navbar = () => {
                     <Badge badgeContent={2} color="secondary" className={classes.badge}>
                         <Notifications/>
                     </Badge>
-                    <Avatar alt="Remy Sharp" />
+                    <Avatar alt="Remy Sharp"  src="	https://v4.mui.com/static/images/avatar/1.jpg" />
                 </div>
             </Toolbar>
         </AppBar>
